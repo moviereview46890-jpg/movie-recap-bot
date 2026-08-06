@@ -1,4 +1,26 @@
 import os
+import json
+
+# Recreate secret files in the cloud environment if running via GitHub Actions
+if os.getenv("YOUTUBE_CLIENT_SECRETS"):
+    with open("client_secrets.json", "w") as f:
+        f.write(os.getenv("YOUTUBE_CLIENT_SECRETS"))
+
+if os.getenv("YOUTUBE_TOKEN"):
+    with open("token.json", "w") as f:
+        f.write(os.getenv("YOUTUBE_TOKEN"))
+
+
+# Write secrets into runtime files for YouTube authentication
+if os.getenv("YOUTUBE_CLIENT_SECRETS"):
+    with open("client_secrets.json", "w") as f:
+        f.write(os.getenv("YOUTUBE_CLIENT_SECRETS"))
+
+if os.getenv("YOUTUBE_TOKEN"):
+    with open("token.json", "w") as f:
+        f.write(os.getenv("YOUTUBE_TOKEN"))
+
+
 import sqlite3
 from pathlib import Path
 from google import genai
